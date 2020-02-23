@@ -8,7 +8,7 @@ module.exports = _query => {
 
     const query = {}
 
-    if (hasOwnProperty(_query, 'url') && _query.code) query.url = {'$regex': new RegExp(validateString(_query.url).replace(/\s+/g, '\\s+'), 'g')}
+    if (hasOwnProperty(_query, 'url') && _query.url) query.url = {'$regex': new RegExp(validateString(_query.url).replace(/\s+/g, '\\s+'), 'g')}
 
     if (hasOwnProperty(_query, 'name') && _query.name) query.name = {'$regex': new RegExp(validateString(_query.name).replace(/\s+/g, '\\s+'), 'g')}
 

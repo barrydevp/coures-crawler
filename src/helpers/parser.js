@@ -13,7 +13,11 @@ exports.validateArray = (source) => {
 }
 
 exports.validateNumber = (source) => {
-    return !isNaN(source) ? parseFloat(source) : null
+    return !isNaN(+source) ? parseFloat(source) : null
+}
+
+exports.validateInteger = (source) => {
+    return !isNaN(+source) ? parseInt(source) : 0
 }
 
 exports.validateBoolean = (source) => {

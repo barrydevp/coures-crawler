@@ -1,25 +1,26 @@
 const {validateString} = require('../../helpers/parser')
 const hasOwnProperty = require('../../helpers/hasOwnProperty')
+const {isString} = require('../../helpers/is')
 const moment = require('moment')
 
-module.exports = _query => {
+module.exports = ({code, answer, content, status, quiz_id, start_date, end_date}) => {
     const defaultStartDate = moment().subtract(3, 'months')
     const defaultEndDate = moment()
 
     const query = {}
 
-    if (hasOwnProperty(_query, 'code') && _query.code) query.code = {'$regex': new RegExp(validateString(_query.code).replace(/\s+/g, '\\s+'), 'g')}
+    if (isString(code)) query.code = {'$regex': new RegExp(validateString(code).replace(/\s+/g, '\\s+'), 'g')}
 
-    if (hasOwnProperty(_query, 'answer') && _query.answer) query.answer = {'$regex': new RegExp(validateString(_query.answer).replace(/\s+/g, '\\s+'), 'g')}
+    if (isString(answer)) query.answer = {'$regex': new RegExp(validateString(answer).replace(/\s+/g, '\\s+'), 'g')}
 
-    if (hasOwnProperty(_query, 'content') && _query.content) query.content = {'$regex': new RegExp(validateString(_query.content).replace(/\s+/g, '\\s+'), 'g')}    
+    if (isString(content)) query.content = {'$regex': new RegExp(validateString(content).replace(/\s+/g, '\\s+'), 'g')}    
 
-    if (hasOwnProperty(_query, 'status') && _query.status) query.status = validateString(_query.status)
+    if (isString(status)) query.status = validateString(status)
         
-    if (hasOwnProperty(_query, 'quiz_id') && _query.quiz_id) query.quiz_id = validateString(_query.quiz_id)
+    if (isString(quiz_id)) query.quiz_id = validateString(quiz_id)
 
-    const startDate = moment(_query.start_date).isValid() ? moment(_query.start_date) : defaultStartDate
-    const endDate = moment(_query.end_date).isValid() ? moment(_query.end_date) : defaultEndDate
+    const startDate = moment(start_date).isValid() ? moment(start_date) : defaultStartDate
+    const endDate = moment(end_date).isValid() ? moment(end_date) : defaultEndDate
     const isDateValid = endDate.isAfter(startDate)
 
     query.created_at = {

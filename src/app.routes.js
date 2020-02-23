@@ -33,7 +33,8 @@ const quizCtrl = require('./controllers/quiz')
 router.get('/quizs', quizCtrl.getListQuiz)
 router.get('/quizs/:_id', quizCtrl.getQuizById)
 router.post('/quizs', quizCtrl.insertQuiz)
-router.put('/quizs/:_id', quizCtrl.updateQuiz)
+router.put('/quizs/:_id', quizCtrl.updateQuizById)
+router.put('/quizs', quizCtrl.updateQuizByQuery)
 
 /**
  * Questions.
@@ -45,6 +46,15 @@ router.post('/questions', questionCtrl.insertQuestion)
 router.put('/questions/:_id', questionCtrl.updateQuestionById)
 router.put('/questions', questionCtrl.updateQuestionByQuery)
 router.post('/questions/bulk-update', questionCtrl.bulkUpdateQuestion)
+
+/**
+ * Logs.
+ */
+const logCtrl = require('./controllers/log')
+router.get('/logs', logCtrl.getListLog)
+router.get('/logs/:_id', logCtrl.getLogById)
+router.post('/logs', logCtrl.insertLog)
+router.put('/logs/:_id', logCtrl.updateLog)
 
 /**
  * 404 page.

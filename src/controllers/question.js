@@ -43,32 +43,28 @@ exports.updateQuestionById = (req, res) => {
 }
 
 exports.updateQuestionByQuery = (req, res) => {
-    const {code: qCode, content: qContent, answer: qAnswer, quiz_id: qQuiz_id} = {...req.query}
+    const {code: qCode, content: qContent, quiz_id: qQuiz_id} = {...req.query}
     const {code, content, answer, quiz_id} = {...req.body}
 
     QuestionActions.updateQuestionByQuery({
         qCode,
         qContent,
-        qAnswer,
         qQuiz_id,
     },
     {
         code,
         content,
         answer,
-        status,
         quiz_id,
-        end_date,
-        start_date,
     })
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.bulkUpdateQuestion = (req, res) => {
-    const {questions, quiz_id} = {...req.body}
+    const {questions, quiz_id, url} = {...req.body}
 
-    QuestionActions.bulkUpdateQuestion({questions, quiz_id})
+    QuestionActions.bulkUpdateQuestion({questions, quiz_id, url})
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

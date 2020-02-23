@@ -1,7 +1,7 @@
 exports.isUndef = v => v === null || v === undefined
 exports.isNotUndef = v => v !== null && v !== undefined
 exports.isFunc = f => typeof f === "function"
-exports.isNumber = n => typeof n === "number"
+exports.isNumber = n => typeof n === "number" && !Number.isNaN(n)
 exports.isString = s => typeof s === "string"
 exports.isArray = Array.isArray
 exports.isObject = obj => obj && !array(obj) && typeof obj === "object"

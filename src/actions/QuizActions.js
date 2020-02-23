@@ -12,6 +12,10 @@ exports.insertQuiz = body => {
     return Quiz.insertQuiz(body)
 }
 
-exports.updateQuiz = (_id, body) => {
+exports.updateQuizById = (_id, body) => {
     return Quiz.updateQuizById(_id, body)
+}
+
+exports.updateQuizByQuery = (query, body) => {
+    return Quiz.updateQuizByQuery(query, body)
 }

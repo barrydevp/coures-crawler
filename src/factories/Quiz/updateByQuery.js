@@ -12,7 +12,7 @@ const _updateQuiz = async (query, quiz) => {
 
     const result = await Quiz.updateOne(query, {
         ...quiz,
-        status: 'crawler',
+        status: 'updated',
         updated_at: Date.now(),
     }, {upsert: true, setDefaultsOnInsert: true})
 

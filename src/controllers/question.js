@@ -26,45 +26,35 @@ exports.getQuestionById = (req, res) => {
 }
 
 exports.insertQuestion = (req, res) => {
-    const {code, content, answer, quiz_id} = {...req.body}
+    const _body = {...req.body}
 
-    QuestionActions.insertQuestion({code, content, answer, quiz_id})
+    QuestionActions.insertQuestion(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.updateQuestionById = (req, res) => {
     const {_id} = {...req.params}
-    const {code, content, answer, quiz_id} = {...req.body}
+    const _body = {...req.body}
 
-    QuestionActions.updateQuestionById(_id, {code, content, answer, quiz_id})
+    QuestionActions.updateQuestionById(_id, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.updateQuestionByQuery = (req, res) => {
-    const {code: qCode, content: qContent, quiz_id: qQuiz_id} = {...req.query}
-    const {code, content, answer, quiz_id} = {...req.body}
+    const _query = {...req.query}
+    const _body = {...req.body}
 
-    QuestionActions.updateQuestionByQuery({
-        qCode,
-        qContent,
-        qQuiz_id,
-    },
-    {
-        code,
-        content,
-        answer,
-        quiz_id,
-    })
+    QuestionActions.updateQuestionByQuery(_query, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.bulkUpdateQuestion = (req, res) => {
-    const {questions, quiz_id, url} = {...req.body}
+    const _body = {...req.body}
 
-    QuestionActions.bulkUpdateQuestion({questions, quiz_id, url})
+    QuestionActions.bulkUpdateQuestion(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

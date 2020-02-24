@@ -4,14 +4,21 @@ const updateByQuery = require('./updateByQuery')
 const insertLog = require('../Log/insert')
 const Promise = require('bluebird')
 
-module.exports = async ({quiz_id, questions, url}) => {
+module.exports = async ({quiz_id, questions, url, source}) => {
 
 	setTimeout(async () => {
 		try {
 			const result = await Promise.all(
 			    (questions || []).map(({content, answer, code}) => {
 			        const query = {qCode: code, qContent: content, qQuiz_id: quiz_id}
-			        const question = {code, content, answer, quiz_id}
+			        const question = {
+			        	code, 
+			        	content, 
+			        	answer,
+			        	source: source || 'unknown',
+			        	quiz_id,
+			        }
+
 			        return updateByQuery(query, question)
 			        	.then(() => {
 				        	console.log(code, "--done!")

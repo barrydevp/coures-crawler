@@ -3,7 +3,7 @@ const hasOwnProperty = require('../../helpers/hasOwnProperty')
 const {isString} = require('../../helpers/is')
 const moment = require('moment')
 
-module.exports = ({code, answer, content, status, quiz_id, start_date, end_date}) => {
+module.exports = ({code, answer, content, source, status, quiz_id, start_date, end_date}) => {
     const defaultStartDate = moment().subtract(3, 'months')
     const defaultEndDate = moment()
 
@@ -13,7 +13,9 @@ module.exports = ({code, answer, content, status, quiz_id, start_date, end_date}
 
     if (isString(answer)) query.answer = {'$regex': new RegExp(validateString(answer).replace(/\s+/g, '\\s+'), 'g')}
 
-    if (isString(content)) query.content = {'$regex': new RegExp(validateString(content).replace(/\s+/g, '\\s+'), 'g')}    
+    if (isString(content)) query.content = {'$regex': new RegExp(validateString(content).replace(/\s+/g, '\\s+'), 'g')} 
+       
+    if (isString(source)) query.source = {'$regex': new RegExp(validateString(source).replace(/\s+/g, '\\s+'), 'g')}    
 
     if (isString(status)) query.status = validateString(status)
         

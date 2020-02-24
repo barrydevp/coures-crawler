@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@barrydevp/common": "^0.1.2",
-    "@barrydevp/course-schemas": "^0.1.7",
+    "@barrydevp/course-schemas": "^0.1.8",
     "@barrydevp/heartbeat": "^0.1.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",

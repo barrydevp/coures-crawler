@@ -25,18 +25,27 @@ exports.getCourseById = (req, res) => {
 }
 
 exports.insertCourse = (req, res) => {
-    const {code, name, site_id} = {...req.body}
+    const _body = {...req.body}
 
-    CourseActions.insertCourse({code, name, site_id})
+    CourseActions.insertCourse(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
-exports.updateCourse = (req, res) => {
+exports.updateCourseById = (req, res) => {
     const {_id} = {...req.params}
-    const {code, name, site_id} = {...req.body}
+    const _body = {...req.body}
 
-    CourseActions.updateCourse(_id, {code, name, site_id})
+    CourseActions.updateCourseById(_id, _body)
+        .then(response.sendSuccess(req, res))
+        .catch(response.sendError(req, res))
+}
+
+exports.updateCourseByQuery = (req, res) => {
+    const _query = {...req.query}
+    const _body = {...req.body}
+
+    CourseActions.updateCourseByQuery(_query, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

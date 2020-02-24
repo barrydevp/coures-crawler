@@ -24,18 +24,27 @@ exports.getSiteById = (req, res) => {
 }
 
 exports.insertSite = (req, res) => {
-    const {name, url} = {...req.body}
+    const _body = {...req.body}
 
-    SiteActions.insertSite({name, url})
+    SiteActions.insertSite(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
-exports.updateSite = (req, res) => {
+exports.updateSiteById = (req, res) => {
     const {_id} = {...req.params}
-    const {name, url} = {...req.body}
+    const _body = {...req.body}
 
-    SiteActions.updateSite(_id, {name, url})
+    SiteActions.updateSiteById(_id, _body)
+        .then(response.sendSuccess(req, res))
+        .catch(response.sendError(req, res))
+}
+
+exports.updateSiteByQuery = (req, res) => {
+    const _query = {...req.query}
+    const _body = {...req.body}
+
+    SiteActions.updateSiteByQuery(_id, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

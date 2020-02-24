@@ -25,35 +25,27 @@ exports.getQuizById = (req, res) => {
 }
 
 exports.insertQuiz = (req, res) => {
-    const {code, name, course_id} = {...req.body}
+    const _body = {...req.body}
 
-    QuizActions.insertQuiz({code, name, course_id})
+    QuizActions.insertQuiz(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.updateQuizById = (req, res) => {
     const {_id} = {...req.params}
-    const {code, name, course_id} = {...req.body}
+    const _body = {...req.body}
 
-    QuizActions.updateQuizById(_id, {code, name, course_id})
+    QuizActions.updateQuizById(_id, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
 exports.updateQuizByQuery = (req, res) => {
-    const {code: qCode, name: qName, course_id: qCourse_id} = {...req.query}
-    const {code, name, course_id} = {...req.body}
+    const _query = {...req.query}
+    const _body = {...req.body}
 
-    QuizActions.updateQuizByQuery({
-        qCode,
-        qName,
-        qCourse_id,
-    }, {
-        code, 
-        name, 
-        course_id
-    })
+    QuizActions.updateQuizByQuery(_query, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

@@ -12,6 +12,10 @@ exports.insertSite = body => {
     return Site.insertSite(body)
 }
 
-exports.updateSite = (_id, body) => {
+exports.updateSiteById = (_id, body) => {
     return Site.updateSiteById(_id, body)
+}
+
+exports.updateSiteByQuery = (query, body) => {
+    return Site.updateSiteByQuery(query, body)
 }

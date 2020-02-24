@@ -12,6 +12,10 @@ exports.insertCourse = body => {
     return Course.insertCourse(body)
 }
 
-exports.updateCourse = (_id, body) => {
+exports.updateCourseById = (_id, body) => {
     return Course.updateCourseById(_id, body)
+}
+
+exports.updateCourseByQuery = (query, body) => {
+    return Course.updateCourseByQuery(query, body)
 }

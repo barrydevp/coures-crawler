@@ -12,6 +12,6 @@ exports.insertLog = body => {
     return Log.insertLog(body)
 }
 
-exports.updateLog = (_id, body) => {
+exports.updateLogById = (_id, body) => {
     return Log.updateLogById(_id, body)
 }

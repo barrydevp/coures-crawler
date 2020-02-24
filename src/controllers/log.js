@@ -29,18 +29,18 @@ exports.getLogById = (req, res) => {
 }
 
 exports.insertLog = (req, res) => {
-    const {url, total_question, success_question, error_question, status, quiz_id} = {...req.body}
+    const _body = {...req.body}
 
-    LogActions.insertLog({url, total_question, success_question, error_question, status, quiz_id})
+    LogActions.insertLog(_body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }
 
-exports.updateLog = (req, res) => {
+exports.updateLogById = (req, res) => {
     const {_id} = {...req.params}
-    const {url, total_question, success_question, error_question, status, quiz_id} = {...req.body}
+    const _body = {...req.body}
 
-    LogActions.updateLog(_id, {url, total_question, success_question, error_question, status, quiz_id})
+    LogActions.updateLogById(_id, _body)
         .then(response.sendSuccess(req, res))
         .catch(response.sendError(req, res))
 }

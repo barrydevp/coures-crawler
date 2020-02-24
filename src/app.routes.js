@@ -15,7 +15,8 @@ const siteCtrl = require('./controllers/site')
 router.get('/sites', siteCtrl.getListSite)
 router.get('/sites/:_id', siteCtrl.getSiteById)
 router.post('/sites', siteCtrl.insertSite)
-router.put('/sites/:_id', siteCtrl.updateSite)
+router.put('/sites/:_id', siteCtrl.updateSiteById)
+router.put('/sites', siteCtrl.updateSiteByQuery)
 
 /**
  * Courses.
@@ -24,7 +25,8 @@ const courseCtrl = require('./controllers/course')
 router.get('/courses', courseCtrl.getListCourse)
 router.get('/courses/:_id', courseCtrl.getCourseById)
 router.post('/courses', courseCtrl.insertCourse)
-router.put('/courses/:_id', courseCtrl.updateCourse)
+router.put('/courses/:_id', courseCtrl.updateCourseById)
+router.put('/courses', courseCtrl.updateCourseByQuery)
 
 /**
  * Quizs.
@@ -54,7 +56,7 @@ const logCtrl = require('./controllers/log')
 router.get('/logs', logCtrl.getListLog)
 router.get('/logs/:_id', logCtrl.getLogById)
 router.post('/logs', logCtrl.insertLog)
-router.put('/logs/:_id', logCtrl.updateLog)
+router.put('/logs/:_id', logCtrl.updateLogById)
 
 /**
  * 404 page.

@@ -1,4 +1,5 @@
 const {validateString} = require('../../helpers/parser')
+const {escapeStringRegex} = require('../../helpers/parseRegex')
 const hasOwnProperty = require('../../helpers/hasOwnProperty')
 const moment = require('moment')
 
@@ -8,9 +9,9 @@ module.exports = _query => {
 
     const query = {}
 
-    if (hasOwnProperty(_query, 'code') && _query.code) query.code = {'$regex': new RegExp(validateString(_query.code).replace(/\s+/g, '\\s+'), 'g')}
+    if (hasOwnProperty(_query, 'code') && _query.code) query.code = {'$regex': new RegExp(escapeStringRegex(validateString(_query.code)), 'gi')}
 
-    if (hasOwnProperty(_query, 'name') && _query.name) query.name = {'$regex': new RegExp(validateString(_query.name).replace(/\s+/g, '\\s+'), 'g')}
+    if (hasOwnProperty(_query, 'name') && _query.name) query.name = {'$regex': new RegExp(escapeStringRegex(validateString(_query.name)), 'gi')}
 
     if (hasOwnProperty(_query, 'status') && _query.status) query.status = validateString(_query.status)
         

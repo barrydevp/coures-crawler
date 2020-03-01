@@ -1,4 +1,5 @@
 const {validateString} = require('../../helpers/parser')
+const {escapeStringRegex} = require('../../helpers/parseRegex')
 const hasOwnProperty = require('../../helpers/hasOwnProperty')
 const {isString} = require('../../helpers/is')
 const moment = require('moment')
@@ -9,13 +10,13 @@ module.exports = ({code, answer, content, source, status, quiz_id, start_date, e
 
     const query = {}
 
-    if (isString(code)) query.code = {'$regex': new RegExp(validateString(code).replace(/\s+/g, '\\s+'), 'g')}
+    if (isString(code)) query.code = {'$regex': new RegExp(escapeStringRegex(validateString(code)), 'gi')}
 
-    if (isString(answer)) query.answer = {'$regex': new RegExp(validateString(answer).replace(/\s+/g, '\\s+'), 'g')}
+    if (isString(answer)) query.answer = {'$regex': new RegExp(escapeStringRegex(validateString(answer)), 'gi')}
 
-    if (isString(content)) query.content = {'$regex': new RegExp(validateString(content).replace(/\s+/g, '\\s+'), 'g')} 
+    if (isString(content)) query.content = {'$regex': new RegExp(escapeStringRegex(validateString(content)), 'gi')} 
        
-    if (isString(source)) query.source = {'$regex': new RegExp(validateString(source).replace(/\s+/g, '\\s+'), 'g')}    
+    if (isString(source)) query.source = {'$regex': new RegExp(escapeStringRegex(validateString(source)), 'gi')}    
 
     if (isString(status)) query.status = validateString(status)
         

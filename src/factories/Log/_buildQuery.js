@@ -1,4 +1,5 @@
 const {validateString, validateInteger} = require('../../helpers/parser')
+const {escapeStringRegex} = require('../../helpers/parseRegex')
 const hasOwnProperty = require('../../helpers/hasOwnProperty')
 const {isString, isNumber} = require('../../helpers/is')
 const moment = require('moment')
@@ -9,7 +10,7 @@ module.exports = ({url, total_question, success_question, error_question, status
 
     const query = {}
 
-    if (isString(url)) query.url = {'$regex': new RegExp(validateString(url).replace(/\s+/g, '\\s+'), 'g')}
+    if (isString(url)) query.url = {'$regex': new RegExp(escapeStringRegex(validateString(url)), 'gi')}
 
     if (isNumber(+total_question)) query.total_question = validateInteger(total_question)
 
